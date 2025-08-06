@@ -62,7 +62,7 @@ jobs:
         name: csv-comparator-${{ runner.os }}
         path: |
           target/csv-comparator-*.jar
-          target/*.dmg
-          target/*.deb
-          target/*.exe
+          target/dist/*.dmg
+          target/dist/*.deb
+          target/dist/*.exe
         retention-days: 30 

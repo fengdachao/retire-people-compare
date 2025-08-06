@@ -7,7 +7,6 @@ on:
 
 jobs:
   release:
-    needs: build
     runs-on: ubuntu-latest
     
     steps:
@@ -46,7 +45,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./artifacts/csv-comparator-macOS-latest/*.dmg
+        asset_path: ./artifacts/csv-comparator-macOS-latest/target/dist/*.dmg
         asset_name: CsvComparator-${{ github.ref_name }}-macOS.dmg
         asset_content_type: application/octet-stream
         
@@ -56,7 +55,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./artifacts/csv-comparator-Windows-latest/*.exe
+        asset_path: ./artifacts/csv-comparator-Windows-latest/target/dist/*.exe
         asset_name: CsvComparator-${{ github.ref_name }}-Windows.exe
         asset_content_type: application/octet-stream
         
@@ -66,6 +65,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./artifacts/csv-comparator-ubuntu-latest/*.deb
+        asset_path: ./artifacts/csv-comparator-ubuntu-latest/target/dist/*.deb
         asset_name: CsvComparator-${{ github.ref_name }}-Linux.deb
         asset_content_type: application/vnd.debian.binary-package 
