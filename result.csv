@@ -1,0 +1,13 @@
+类型,值,来源文件,来源列
+所有文件共有,"John Smith","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Emily Davis","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"David Wilson","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Christopher Lee","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Robert Taylor","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Lisa Anderson","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Michael Brown","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Amanda Garcia","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Jennifer Martinez","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+所有文件共有,"Sarah Johnson","sample1.csv & sample2.csv & sample3.csv","姓名 & 姓名 & 姓名"
+独有值,"Thomas Anderson","sample3.csv","姓名"
+独有值,"Rachel Green","sample3.csv","姓名"
