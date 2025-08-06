@@ -36,10 +36,10 @@ jobs:
     - name: Build JAR
       run: mvn clean package -DskipTests
       
-    - name: Set up JDK 14 for jpackage
+    - name: Set up JDK 17 for jpackage
       uses: actions/setup-java@v4
       with:
-        java-version: '14'
+        java-version: '17'
         distribution: 'temurin'
         
     - name: Build native package
