@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+        
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./artifacts/csv-comparator-ubuntu-latest/csv-comparator-*.jar
+        asset_name: csv-comparator-${{ github.ref_name }}.jar
+        asset_content_type: application/java-archive
+        
+    - name: Upload macOS DMG
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./artifacts/csv-comparator-macOS-latest/*.dmg
+        asset_name: CsvComparator-${{ github.ref_name }}-macOS.dmg
+        asset_content_type: application/octet-stream
+        
+    - name: Upload Windows EXE
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./artifacts/csv-comparator-Windows-latest/*.exe
+        asset_name: CsvComparator-${{ github.ref_name }}-Windows.exe
+        asset_content_type: application/octet-stream
+        
+    - name: Upload Linux DEB
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./artifacts/csv-comparator-ubuntu-latest/*.deb
+        asset_name: CsvComparator-${{ github.ref_name }}-Linux.deb
+        asset_content_type: application/vnd.debian.binary-package 
