@@ -42,15 +42,19 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
-    - name: Build native package
+    - name: Build native package (Linux/macOS)
+      if: runner.os != 'Windows'
       run: |
         if [ "$RUNNER_OS" = "Linux" ]; then
           mvn jpackage:jpackage -Plinux
         elif [ "$RUNNER_OS" = "macOS" ]; then
           mvn jpackage:jpackage -Pmacos
-        elif [ "$RUNNER_OS" = "Windows" ]; then
-          mvn jpackage:jpackage -Pwindows
         fi
+        
+    - name: Build native package (Windows)
+      if: runner.os == 'Windows'
+      shell: cmd
+      run: mvn jpackage:jpackage -Pwindows
         
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
